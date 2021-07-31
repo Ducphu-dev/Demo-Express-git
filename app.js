@@ -1,10 +1,16 @@
 const express = require('express');
 const mongoose = require('mongoose');
+// var bodyParser = require('body-parser');
 require("dotenv/config");
 const app = express();
 
+// Middleware
+// app.use(bodyParser.urlencoded({ extended: true}))
+app.use(express.json());
+
 // Import Routes
-const postRoute = require('./routes/posts');
+const postRoute = require('./routes/Posts');
+
 
 app.use("/posts", postRoute)
 
@@ -23,9 +29,5 @@ app.get("/",(req, res )=>{
     res.send("We are on home")
 });
 
-app.get("/post",(req, res )=>{
-    res.send("We are on post")
-});
-
 // How to w start listening to the server
-app.listen(3000)
+app.listen(3002)

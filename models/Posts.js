@@ -2,13 +2,13 @@ const mongoose = require('mongoose');
 
 const PostShema = mongoose.Schema({
     product_id: Number,
-    product_img: URL,
-    product_img_hover: URL,
+    product_img: String,
+    product_img_hover: String,
     product_img_slide: [
-        URL,
-        URL,
-        URL,
-        URL
+        String,
+        String,
+        String,
+        String
     ],
     product_date: {
         type: Number,
