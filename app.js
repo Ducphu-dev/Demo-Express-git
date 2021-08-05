@@ -1,11 +1,11 @@
 const express = require('express');
 const mongoose = require('mongoose');
-// var bodyParser = require('body-parser');
+var Cors = require('cors');
 require("dotenv/config");
 const app = express();
 
 // Middleware
-// app.use(bodyParser.urlencoded({ extended: true}))
+app.use(Cors())
 app.use(express.json());
 
 // Import Routes
@@ -30,4 +30,4 @@ app.get("/",(req, res )=>{
 });
 
 // How to w start listening to the server
-app.listen(3002)
+app.listen(3001)

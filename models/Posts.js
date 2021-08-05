@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
 const PostShema = mongoose.Schema({
-    product_id: Number,
     product_img: String,
     product_img_hover: String,
     product_img_slide: [
@@ -11,7 +10,7 @@ const PostShema = mongoose.Schema({
         String
     ],
     product_date: {
-        type: Number,
+        type: Date,
         default: Date.now
     },
     product_sale: Number,
