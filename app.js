@@ -10,9 +10,11 @@ app.use(express.json());
 
 // Import Routes
 const postRoute = require('./routes/Posts');
+const userRoute = require('./routes/Users');
 
 
 app.use("/posts", postRoute)
+app.use("/users", userRoute)
 
 
 // connect db
@@ -25,6 +27,10 @@ mongoose.connect(
 )
 
 // ROUTES
+
+app.get("/send/users",(req, res )=>{
+    res.send("We are on home")
+});
 app.get("/",(req, res )=>{
     res.send("We are on home")
 });
