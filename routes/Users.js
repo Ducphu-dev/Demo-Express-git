@@ -1,7 +1,10 @@
 const express = require('express');
+
 const Users = require('../models/Users');
+const UserLogin = require('../models/GetLoginUser');
 
 const router = express.Router();
+
 
 // Get all
 router.get('/', async (req, res)=>{
@@ -13,8 +16,35 @@ router.get('/', async (req, res)=>{
     }
 });
 
+
+
+router.post('/getuser', async (req, res)=>{
+
+    const userExist = await Users.findOne({usernameReg: req.body.usernameLogin})
+
+    if(!userExist) return res.status(400).send({name: req.body.usernameLogin, Msg: "User name or password doesn't exist!!"})
+
+    // const passwordExist = await Users.findOne({passwordReg: req.body.passwordLogin})
+    // console.log(passwordExist)
+    if(req.body.passwordLogin !== userExist.passwordReg) return res.status(400).send({password: req.body.passwordLogin, Msg: "User name or password doesn't exist!!"}) 
+
+    try {
+        
+        res.status(200).send({Msg:"Ok"});
+    } catch (error) {
+        res.json({message: err})
+    }
+    
+});
+
 // Post request
 router.post('/', async (req, res)=>{
+
+    const userExist = await Users.findOne({usernameReg: req.body.usernameReg})
+   
+    const emailExist = await Users.findOne({emailReg: req.body.emailReg})
+    if(userExist) return res.status(400).send({name: req.body.usernameReg, Msg: "User name already exist"})
+    if(emailExist)  return res.status(400).send({email: req.body.emailReg, Msg: "Email already exist"})
     
     const users = new Users({
         usernameReg: req.body.usernameReg,
@@ -29,7 +59,6 @@ router.post('/', async (req, res)=>{
     } catch (error) {
         res.json({message: err})
     }
-    
 });
 
 // Specific post
