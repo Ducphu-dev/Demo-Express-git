@@ -11,7 +11,7 @@ router.get('/', async (req, res)=>{
     try {
         const users = await Users.find();
         res.json(users);
-    } catch (error) {
+    } catch (err) {
         res.json({message: err})
     }
 });
@@ -30,8 +30,8 @@ router.post('/getuser', async (req, res)=>{
 
     try {
         
-        res.status(200).send({Msg:"Ok"});
-    } catch (error) {
+        res.status(200).json({userName: userExist.usernameReg, userId: userExist._id, usercard: userExist.userCard} );
+    } catch (err) {
         res.json({message: err})
     }
     
@@ -51,12 +51,12 @@ router.post('/', async (req, res)=>{
         passwordReg: req.body.passwordReg,
         emailReg: req.body.emailReg,
         Create_Date: req.body.Create_Date,
-        
+        userCard: req.body.userCard
     })
     try {
         const savedUser = await users.save();
         res.json(savedUser)
-    } catch (error) {
+    } catch (err) {
         res.json({message: err})
     }
 });
@@ -66,7 +66,7 @@ router.get('/:userId', async (req, res)=>{
     try {
         const users = await Users.findById(req.params.postId);
         res.json(users)
-    } catch (error) {
+    } catch (err) {
         res.json({message: err})
     }
    
@@ -77,7 +77,7 @@ router.delete('/:userId', async (req, res)=>{
     try {
         const removedUser = await Users.remove({_id: req.params.userId});
         res.json(removedUser)
-    } catch (error) {
+    } catch (err) {
         res.json({message: err})
     }
 })
@@ -88,13 +88,10 @@ router.patch('/:userId', async(req, res)=>{
         const patchedUser = await Users.updateOne(
             {_id: req.params.userId}, 
             {$set: {
-                usernameReg: req.body.usernameReg,
-                passwordReg: req.body.passwordReg,
-                emailReg: req.body.emailReg,
-                Create_Date: req.body.Create_Date,
+                userCard: req.body.userCard
                 }});
         res.json(patchedUser)
-    } catch (error) {
+    } catch (err) {
         res.json({message: err})
     }
 })

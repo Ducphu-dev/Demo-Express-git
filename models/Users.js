@@ -8,7 +8,7 @@ const UserShema = mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    
+    userCard: Array
 })
 
 module.exports = mongoose.model('Users', UserShema);

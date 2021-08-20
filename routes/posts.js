@@ -5,10 +5,11 @@ const router = express.Router();
 
 // Get all
 router.get('/', async (req, res)=>{
+    
     try {
         const posts = await Post.find();
         res.json(posts);
-    } catch (error) {
+    } catch (err) {
         res.json({message: err})
     }
 });
@@ -34,7 +35,7 @@ router.post('/', async (req, res)=>{
     try {
         const savedPost = await post.save();
         res.json(savedPost)
-    } catch (error) {
+    } catch (err) {
         res.json({message: err})
     }
     
@@ -45,7 +46,7 @@ router.get('/:postId', async (req, res)=>{
     try {
         const post = await Post.findById(req.params.postId);
         res.json(post)
-    } catch (error) {
+    } catch (err) {
         res.json({message: err})
     }
    
@@ -56,7 +57,7 @@ router.delete('/:postId', async (req, res)=>{
     try {
         const removedPost = await Post.remove({_id: req.params.postId});
         res.json(removedPost)
-    } catch (error) {
+    } catch (err) {
         res.json({message: err})
     }
 })
@@ -81,7 +82,7 @@ router.patch('/:postId', async(req, res)=>{
                 product_infor: req.body.product_infor,
                 product_amount: req.body.product_amount}});
         res.json(patchedPost)
-    } catch (error) {
+    } catch (err) {
         res.json({message: err})
     }
 })

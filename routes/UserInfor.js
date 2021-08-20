@@ -10,7 +10,7 @@ router.get('/', async (req, res)=>{
     try {
         const users = await UsersInforCheckout.find();
         res.json(users);
-    } catch (error) {
+    } catch (err) {
         res.json({message: err})
     }
 });
@@ -38,7 +38,7 @@ router.post('/', async (req, res)=>{
     try {
         const savedUser = await users.save();
         res.json(savedUser)
-    } catch (error) {
+    } catch (err) {
         res.json({message: err})
     }
 });
@@ -48,7 +48,7 @@ router.get('/:userId', async (req, res)=>{
     try {
         const users = await UsersInforCheckout.findById(req.params.postId);
         res.json(users)
-    } catch (error) {
+    } catch (err) {
         res.json({message: err})
     }
    
@@ -59,7 +59,7 @@ router.delete('/:userId', async (req, res)=>{
     try {
         const removedUser = await UsersInforCheckout.remove({_id: req.params.userId});
         res.json(removedUser)
-    } catch (error) {
+    } catch (err) {
         res.json({message: err})
     }
 })
@@ -76,7 +76,7 @@ router.patch('/:userId', async(req, res)=>{
                 Create_Date: req.body.Create_Date,
                 }});
         res.json(patchedUser)
-    } catch (error) {
+    } catch (err) {
         res.json({message: err})
     }
 })

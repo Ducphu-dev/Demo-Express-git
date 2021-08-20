@@ -12,7 +12,7 @@ app.use(Cors())
 app.use(express.json());
 
 // Import Routes
-const postRoute = require('./routes/Posts');
+const postRoute = require('./routes/posts');
 const userRoute = require('./routes/Users');
 const userInforRoute = require('./routes/UserInfor');
 
@@ -38,6 +38,7 @@ app.get("/send/users",(req, res )=>{
 app.get("/",(req, res )=>{
     res.send("We are on home")
 });
+
 
 
 // How to w start listening to the server
