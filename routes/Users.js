@@ -23,9 +23,6 @@ router.post('/getuser', async (req, res)=>{
     const userExist = await Users.findOne({usernameReg: req.body.usernameLogin})
 
     if(!userExist) return res.status(400).send({name: req.body.usernameLogin, Msg: "User name or password doesn't exist!!"})
-
-    // const passwordExist = await Users.findOne({passwordReg: req.body.passwordLogin})
-    // console.log(passwordExist)
     if(req.body.passwordLogin !== userExist.passwordReg) return res.status(400).send({password: req.body.passwordLogin, Msg: "User name or password doesn't exist!!"}) 
 
     try {

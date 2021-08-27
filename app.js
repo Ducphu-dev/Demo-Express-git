@@ -15,10 +15,12 @@ app.use(express.json());
 const postRoute = require('./routes/posts');
 const userRoute = require('./routes/Users');
 const userInforRoute = require('./routes/UserInfor');
+const adminRoute = require('./routes/Admin');
 
 app.use("/posts", postRoute)
 app.use("/users", userRoute)
 app.use("/userinfor", userInforRoute)
+app.use("/admin", adminRoute)
 
 
 // connect db
